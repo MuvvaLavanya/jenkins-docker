@@ -15,7 +15,7 @@ pipeline {
                          }
              stage('Build docker image'){
                          steps{
-                                 bat "docker build -t lavanyaMuvva/devops-integration ."
+                                 bat "docker build -t lavanyamuvva/devops-integration ."
                          }
                      }
 
