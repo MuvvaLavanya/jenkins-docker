@@ -105,5 +105,6 @@
 				</executions>
 			</plugin>
 		</plugins>
+		<finalName>authentication</finalName>
 	</build>
 </project>
