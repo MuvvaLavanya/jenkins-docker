@@ -1,8 +1,6 @@
 pipeline {
     agent any
-    tools{
-        maven 'maven_3_9_4'
-    }
+
     stages{
              stage('Build, Test, and Generate Coverage') {
                     steps {
