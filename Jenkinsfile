@@ -40,13 +40,7 @@ bat "mvn clean install"
 }
 
 }
-
-
-
-def findFiles(pomContent) {
-
-def pom = new XmlSlurper().parseText(pomContent)
-
-return pom.modules.module.collect { it.text() }
-
 }
+
+
+
