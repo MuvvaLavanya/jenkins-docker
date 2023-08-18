@@ -14,12 +14,12 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>GymMicroservice</module>
-<!--		<module>GymReportMicroservice</module>-->
-<!--		<module>NotificationMicroservice</module>-->
-<!--		<module>GymAuthenticationService-1</module>-->
-<!--		<module>EurekaServer</module>-->
-<!--		<module>GatewayServer</module>-->
-<!--		<module>GymCommons</module>-->
+		<module>GymReportMicroservice</module>
+		<module>NotificationMicroservice</module>
+		<module>GymAuthenticationService-1</module>
+		<module>EurekaServer</module>
+		<module>GatewayServer</module>
+		<module>GymCommons</module>
 	</modules>
 	<properties>
 		<java.version>17</java.version>

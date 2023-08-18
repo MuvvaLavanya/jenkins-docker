@@ -1,25 +1,52 @@
 pipeline {
-    agent any
 
-    stages{
-             stage('Build, Test, and Generate Coverage') {
-                    steps {
-                        bat "mvn clean verify"
-                        bat "mvn jacoco:prepare-agent"
-                    }
-                }
-             stage('SonarQube Analysis') {
-                         steps {
-                             bat "mvn sonar:sonar -Dsonar.projectKey=jenkins-docker -Dsonar.projectName='jenkins-docker' -Dsonar.host.url=http://localhost:9000 -Dsonar.token=sqp_23e866143be49e0352f8aeaaa1a2651b418c78d8"
-                         }
-                         }
-              stage('Build docker image'){
-                         steps{
-                             script{
-                                 sh 'docker build -t docker4/gym .'
-                             }
-                         }
-                     }
+agent any
 
-    }
+
+tools {
+
+maven "MavenTool"
+
+}
+
+
+stages {
+
+
+stage("Build Modules & Build Docker Images") {
+
+steps {
+
+script {
+
+// def modules = findFiles(glob: '**/pom.xml')
+
+def modules = ['GymMicroservice', 'GymReportMicroservice','NotificationMicroservice','GymAuthenticationService-1','EurekaServer','GatewayServer','GymCommons']
+
+for (def module in modules) {
+
+dir("${module}") {
+
+echo "Building ${module}..."
+
+bat "mvn clean install"
+
+}
+
+}
+
+}
+
+}
+
+}
+
+
+
+def findFiles(pomContent) {
+
+def pom = new XmlSlurper().parseText(pomContent)
+
+return pom.modules.module.collect { it.text() }
+
 }
