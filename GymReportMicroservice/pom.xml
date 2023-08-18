@@ -60,7 +60,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<image>
-						<name>${project.groupId}/notification-microservice:${project.version}</name>
+						<name>${project.groupId}/gym-report-microservice:${project.version}</name>
 					</image>
 				</configuration>
 				<executions>
