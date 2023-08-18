@@ -1,46 +1,34 @@
 pipeline {
 
-agent any
+	agent any
 
 
-tools {
 
-maven "MavenTool"
-
-}
+		stages {
 
 
-stages {
+		stage("Build Modules & Build Docker Images") {
 
+		steps {
 
-stage("Build Modules & Build Docker Images") {
+		script {
 
-steps {
+		// def modules = findFiles(glob: '**/pom.xml')
 
-script {
+		def modules = ['GymMicroservice', 'GymReportMicroservice','NotificationMicroservice','GymAuthenticationService-1','EurekaServer','GatewayServer','GymCommons']
 
-// def modules = findFiles(glob: '**/pom.xml')
+		for (def module in modules) {
 
-def modules = ['GymMicroservice', 'GymReportMicroservice','NotificationMicroservice','GymAuthenticationService-1','EurekaServer','GatewayServer','GymCommons']
+		dir("${module}") {
 
-for (def module in modules) {
+		echo "Building ${module}..."
 
-dir("${module}") {
-
-echo "Building ${module}..."
-
-bat "mvn clean install"
-
-}
-
-}
-
-}
-
-}
-
-}
-}
-
-
+		bat "mvn clean install"
+		}
+		}
+		}
+		}
+		}
+		}
+		}
 
